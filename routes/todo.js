@@ -7,18 +7,17 @@ const user = require("../models/user");
 
 router.get("/", async (req, res, next) => {
     const { id } = req.user;
-    console.log(id);
-    // const { limit, skip } = req.query;
-    // console.log(req.query);
-    // if (limit && skip) {
-    //     const li = limit === '' ? 10 : limit;
-    //     const sk = skip === '' ? 0 : skip;
-    //     const todos = await Todo.find({ user: id }).limit(+li).skip(+sk);
-    //     res.json(todos);
-    //     return;
-    // }
-    // const todos = await Todo.find({ user: id });
-    // res.json(todos);
+    const { limit, skip } = req.query;
+    console.log(req.query);
+    if (limit && skip) {
+        const li = limit === '' ? 10 : limit;
+        const sk = skip === '' ? 0 : skip;
+        const todos = await Todo.find({ user: id }).limit(+li).skip(+sk);
+        res.json(todos);
+        return;
+    }
+    const todos = await Todo.find({ user: id });
+    res.json(todos);
 });
 
 // Post
