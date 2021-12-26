@@ -22,7 +22,16 @@ const todoSchema = new mongoose.Schema(
                 }
             ],
         },
-        // user: { type: mongoose.SchemaTypes.ObjectId, ref: 'User' }
+        created_at: {
+            type: Date,
+            required: true,
+            default: Date.now
+        },
+        updated_at: {
+            type: Date,
+            required: true,
+            default: Date.now
+        }
     }, {
     toJSON: {
         transform: (doc, ret, options) => {
